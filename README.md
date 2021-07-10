@@ -6,3 +6,6 @@ PlexiCore Framework Component | Terminal helper
     |
     <a href="/">More Coming Soon</a>
 </p>
+
+## Licence
+This project was built under GitHub's MIT licence
