@@ -9,16 +9,27 @@ new /** @class */ (function () {
      * Test class entry
      */
     function Test() {
-        var plexiCoreTerminal = new PlexiCoreTerminal_1.default();
-        plexiCoreTerminal.commandHelper.run([
+        var pcTerminal = new PlexiCoreTerminal_1.default();
+        pcTerminal.section("PlexiCore | " + "Terminal", {
+            barHex: "#fff"
+        });
+        console.log(pcTerminal.color("#50ffff", "  Note:"), "This is a testing case");
+        pcTerminal.animate("Hello Progress Bar");
+        pcTerminal
+            .commandHelper
+            .addCommand({
+            trigger: "hello-world",
+            onTrigger: function () {
+                pcTerminal.edit("The terminal message has been modified!");
+            }
+        });
+        pcTerminal
+            .commandHelper
+            .run([
+            "axeri",
+            "plexiCoreTerminal",
             "test_command"
         ]);
-        // plexiCoreTerminal.section("PlexiCoreTerminal");
-        // plexiCoreTerminal.animate("Hello, PlexiCoreTerminal!");
-        //
-        // setTimeout(() => {
-        //     plexiCoreTerminal.end("success", "Done");
-        // }, 2000);
     }
     return Test;
 }());

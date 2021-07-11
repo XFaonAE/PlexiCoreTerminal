@@ -18,18 +18,24 @@ var chalk_1 = __importDefault(require("chalk"));
 var CommandHelper_1 = __importDefault(require("./CommandHelper"));
 var PlexiCoreTerminal = /** @class */ (function () {
     /**
-     * PlexiCoreTerminal entry class
-     */
+        * PlexiCoreTerminal entry class
+        */
     function PlexiCoreTerminal() {
         this.commandHelper = new CommandHelper_1.default();
         this.frameInterval = 100;
         this.animationLoop = null;
         this.lastMessage = "";
         this.frames = [
-            this.color("#50ffff", "|"),
-            this.color("#50ffff", "/"),
-            this.color("#50ffff", "-"),
-            this.color("#50ffff", "\\")
+            this.color("#50ffff", "⠋"),
+            this.color("#50ffff", "⠙"),
+            this.color("#50ffff", "⠹"),
+            this.color("#50ffff", "⠸"),
+            this.color("#50ffff", "⠼"),
+            this.color("#50ffff", "⠴"),
+            this.color("#50ffff", "⠦"),
+            this.color("#50ffff", "⠧"),
+            this.color("#50ffff", "⠇"),
+            this.color("#50ffff", "⠏")
         ];
     }
     /**
@@ -44,7 +50,7 @@ var PlexiCoreTerminal = /** @class */ (function () {
             if (currentFrame > _this.frames.length - 1) {
                 currentFrame = 0;
             }
-            process.stdout.write("\r  " + _this.frames[currentFrame] + "  " + _this.lastMessage);
+            process.stdout.write("  " + _this.frames[currentFrame] + "  " + _this.lastMessage + "\r");
             currentFrame++;
         }, this.frameInterval);
     };
@@ -83,6 +89,13 @@ var PlexiCoreTerminal = /** @class */ (function () {
      */
     PlexiCoreTerminal.prototype.color = function (hex, text) {
         return chalk_1.default.hex(hex)(text);
+    };
+    /**
+     * Edit an animations message if it's running
+     * @param { string } newMessage New message to use as an overwrite
+     */
+    PlexiCoreTerminal.prototype.edit = function (newMessage) {
+        this.lastMessage = newMessage + " ".repeat(newMessage.length - this.lastMessage.length);
     };
     /**
      * Create section

@@ -1,21 +1,33 @@
 import PlexiCoreTerminal from "../src/PlexiCoreTerminal";
 
 new class Test {
-    /**
-     * Test class entry
-     */
-    public constructor() {
-        const plexiCoreTerminal = new PlexiCoreTerminal();
+	/**
+	 * Test class entry
+	 */
+	public constructor() {
+		const pcTerminal = new PlexiCoreTerminal();
 
-        plexiCoreTerminal.commandHelper.run([
-            "test_command"
-        ]);
+		pcTerminal.section("PlexiCore | " + "Terminal", {
+			barHex: "#fff"
+		});
+		console.log(pcTerminal.color("#50ffff", "  Note:"), "This is a testing case");
 
-        // plexiCoreTerminal.section("PlexiCoreTerminal");
-        // plexiCoreTerminal.animate("Hello, PlexiCoreTerminal!");
-        //
-        // setTimeout(() => {
-        //     plexiCoreTerminal.end("success", "Done");
-        // }, 2000);
-    }
+		pcTerminal.animate("Hello Progress Bar");
+
+		pcTerminal
+			.commandHelper
+			.addCommand({
+				trigger: "hello-world",
+				onTrigger: () => {
+					pcTerminal.edit("The terminal message has been modified!");
+				}
+			});
+		pcTerminal
+			.commandHelper
+			.run([
+				"axeri",
+				"plexiCoreTerminal",
+				"test_command"
+			]);
+	}
 }

@@ -27,8 +27,8 @@ export interface SectionOptions {
 }
 export default class PlexiCoreTerminal {
     /**
-     * @var { NdeJS.Timer | null } animationLoop Animation loop object
-     */
+ * @var { NdeJS.Timer | null } animationLoop Animation loop object
+ */
     animationLoop: NodeJS.Timer | null;
     /**
      * @var { CommandHelper } commandHelper CommandHelper class object
@@ -47,8 +47,8 @@ export default class PlexiCoreTerminal {
      */
     frames: Array<string>;
     /**
-     * PlexiCoreTerminal entry class
-     */
+        * PlexiCoreTerminal entry class
+        */
     constructor();
     /**
      * Display an animation
@@ -68,6 +68,11 @@ export default class PlexiCoreTerminal {
      * @return { string } Colored text ready for use in the terminal
      */
     color(hex: string, text: string): string;
+    /**
+     * Edit an animations message if it's running
+     * @param { string } newMessage New message to use as an overwrite
+     */
+    edit(newMessage: string): void;
     /**
      * Create section
      * @param { string } title Title of the section

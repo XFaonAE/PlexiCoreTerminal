@@ -32,7 +32,7 @@ export interface SectionOptions {
 }
 
 export default class PlexiCoreTerminal {
-    /**
+    	/**
 	 * @var { NdeJS.Timer | null } animationLoop Animation loop object
 	 */
 	public animationLoop: NodeJS.Timer | null;
@@ -58,18 +58,24 @@ export default class PlexiCoreTerminal {
 	public frames: Array<string>;
 	
 	/**
-     * PlexiCoreTerminal entry class
-     */
-    public constructor() {
-    	this.commandHelper = new CommandHelper();
+     	* PlexiCoreTerminal entry class
+     	*/
+    	public constructor() {
+    		this.commandHelper = new CommandHelper();
 		this.frameInterval = 100;
 		this.animationLoop = null;
 		this.lastMessage = "";
 		this.frames = [
-			this.color("#50ffff", "|"),
-			this.color("#50ffff", "/"),
-			this.color("#50ffff", "-"),
-			this.color("#50ffff", "\\")
+			this.color("#50ffff", "⠋"),
+			this.color("#50ffff", "⠙"),
+			this.color("#50ffff", "⠹"),
+			this.color("#50ffff", "⠸"),
+			this.color("#50ffff", "⠼"),
+			this.color("#50ffff", "⠴"),
+			this.color("#50ffff", "⠦"),
+			this.color("#50ffff", "⠧"),
+			this.color("#50ffff", "⠇"),
+			this.color("#50ffff", "⠏")
 		];
 	}
 	
@@ -86,7 +92,7 @@ export default class PlexiCoreTerminal {
 				currentFrame = 0;
 			}
 
-			process.stdout.write("\r  " + this.frames[currentFrame] + "  " + this.lastMessage);
+			process.stdout.write("  " + this.frames[currentFrame] + "  " + this.lastMessage + "\r");
 			currentFrame++;
 		}, this.frameInterval);
 	}
@@ -132,6 +138,14 @@ export default class PlexiCoreTerminal {
 	 */
 	public color(hex: string, text: string) {
 		return chalk.hex(hex)(text);
+	}
+
+	/**
+	 * Edit an animations message if it's running
+	 * @param { string } newMessage New message to use as an overwrite
+	 */
+	public edit(newMessage: string) {
+		this.lastMessage = newMessage + " ".repeat(newMessage.length - this.lastMessage.length);
 	}
 
 	/**

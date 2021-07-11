@@ -26,7 +26,7 @@ export default class CommandHelper {
      * Easily register commands and more
      */
     constructor();
-    addCommand(): void;
+    addCommand(command: Command): void;
     /**
      * Run listener
      * @param { Array<string> } command Full command with args
