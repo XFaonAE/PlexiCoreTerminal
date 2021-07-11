@@ -1,17 +1,28 @@
 /// <reference types="node" />
+import CommandHelper from "./CommandHelper";
 /**
  * Options for creating a section
- * @prop { string } barChar Character to use for the separator
- * @prop { string } barHex Hex code color for the separator
- * @prop { number } trailSize How many chars should the trailing bar be
- * @prop { string } titleHex Hex code color for the title
- * @prop { number } titlePadding Padding for the title between the separators
  */
 export interface SectionOptions {
+    /**
+     * @prop { string } barChar Character to use for the separator
+     */
     barChar?: string;
+    /**
+     * @prop { string } barHex Hex code color for the separator
+     */
     barHex?: string;
+    /**
+     * @prop { number } trailSize How many chars should the trailing bar be
+     */
     trailSize?: number;
+    /**
+     * @prop { string } titleHex Hex code color for the title
+     */
     titleHex?: string;
+    /**
+     * @prop { number } titlePadding Padding for the title between the separators
+     */
     titlePadding?: number;
 }
 export default class PlexiCoreTerminal {
@@ -19,6 +30,10 @@ export default class PlexiCoreTerminal {
      * @var { NdeJS.Timer | null } animationLoop Animation loop object
      */
     animationLoop: NodeJS.Timer | null;
+    /**
+     * @var { CommandHelper } commandHelper CommandHelper class object
+     */
+    commandHelper: CommandHelper;
     /**
      * @var { number } frameInterval Delay between animation frames
      */
