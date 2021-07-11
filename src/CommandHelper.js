@@ -11,16 +11,10 @@ var CommandHelper = /** @class */ (function () {
      */
     function CommandHelper() {
         this.ready = false;
-        this.commandRegistry = [
-            {
-                trigger: "test_command",
-                onTrigger: function (args) {
-                    console.log(args);
-                }
-            }
-        ];
+        this.commandRegistry = [];
     }
-    CommandHelper.prototype.addCommand = function () {
+    CommandHelper.prototype.addCommand = function (command) {
+        this.commandRegistry.push(command);
     };
     /**
      * Run listener
