@@ -122,6 +122,14 @@ var PlexiCoreTerminal = /** @class */ (function () {
         var full = this.color(conf.barHex, trail) + padding + this.color(conf.titleHex, title) + padding + this.color(conf.barHex, tail);
         process.stdout.write(full);
     };
+    /**
+     * Create a row with a key and description
+     * @param { string } key Key label
+     * @param { string } desc Description label
+     */
+    PlexiCoreTerminal.prototype.row = function (key, desc) {
+        console.log("  " + this.color("#50ffff", key) + "  -  " + desc);
+    };
     return PlexiCoreTerminal;
 }());
 exports.default = PlexiCoreTerminal;

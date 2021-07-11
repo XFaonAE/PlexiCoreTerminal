@@ -79,4 +79,10 @@ export default class PlexiCoreTerminal {
      * @param { object } options Options for the section
      */
     section(title: string, options?: SectionOptions): void;
+    /**
+     * Create a row with a key and description
+     * @param { string } key Key label
+     * @param { string } desc Description label
+     */
+    row(key: string, desc: string): void;
 }

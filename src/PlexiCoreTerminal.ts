@@ -181,4 +181,13 @@ export default class PlexiCoreTerminal {
 		let full = this.color(conf.barHex, trail) + padding + this.color(conf.titleHex, title) + padding + this.color(conf.barHex, tail);
 		process.stdout.write(full);
 	}
+
+	/**
+	 * Create a row with a key and description
+	 * @param { string } key Key label
+	 * @param { string } desc Description label
+	 */
+	public row(key: string, desc: string) {
+		console.log("  " + this.color("#50ffff", key) + "  -  " + desc);
+	}
 }

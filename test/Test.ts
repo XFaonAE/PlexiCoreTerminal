@@ -6,10 +6,10 @@ new class Test {
 	 */
 	public constructor() {
 		const pcTerminal = new PlexiCoreTerminal();
+		pcTerminal.row("Help", "Shows a list of all commands");
+		pcTerminal.row("Install", "Install the full PlexiCore framework into the current project");
 
-		pcTerminal.section("PlexiCore | " + "Terminal", {
-			barHex: "#fff"
-		});
+		pcTerminal.section("PlexiCore | " + "Terminal");
 		console.log(pcTerminal.color("#50ffff", "  Note:"), "This is a testing case");
 
 		pcTerminal.animate("Hello Progress Bar");
