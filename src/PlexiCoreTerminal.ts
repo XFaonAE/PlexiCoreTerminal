@@ -1,18 +1,33 @@
 import chalk from "chalk";
+import CommandHelper from "./CommandHelper";
 
 /**
  * Options for creating a section
- * @prop { string } barChar Character to use for the separator
- * @prop { string } barHex Hex code color for the separator
- * @prop { number } trailSize How many chars should the trailing bar be
- * @prop { string } titleHex Hex code color for the title
- * @prop { number } titlePadding Padding for the title between the separators
  */
 export interface SectionOptions {
+	/**
+	 * @prop { string } barChar Character to use for the separator
+	 */
 	barChar?: string;
+
+	/**
+	 * @prop { string } barHex Hex code color for the separator
+	 */
 	barHex?: string;
+
+	/**
+	 * @prop { number } trailSize How many chars should the trailing bar be
+	 */
 	trailSize?: number;
+
+	/**
+	 * @prop { string } titleHex Hex code color for the title
+	 */
 	titleHex?: string;
+
+	/**
+	 * @prop { number } titlePadding Padding for the title between the separators
+	 */
 	titlePadding?: number;
 }
 
@@ -21,6 +36,11 @@ export default class PlexiCoreTerminal {
 	 * @var { NdeJS.Timer | null } animationLoop Animation loop object
 	 */
 	public animationLoop: NodeJS.Timer | null;
+
+	/**
+	 * @var { CommandHelper } commandHelper CommandHelper class object
+	 */
+	public commandHelper: CommandHelper;
 
 	/**
 	 * @var { number } frameInterval Delay between animation frames
@@ -41,6 +61,7 @@ export default class PlexiCoreTerminal {
      * PlexiCoreTerminal entry class
      */
     public constructor() {
+    	this.commandHelper = new CommandHelper();
 		this.frameInterval = 100;
 		this.animationLoop = null;
 		this.lastMessage = "";
@@ -100,7 +121,7 @@ export default class PlexiCoreTerminal {
 			clearInterval(this.animationLoop);
 		}
 
-		process.stdout.write("\r  " + this.color(statusHex, "•") + "  " + message);
+		process.stdout.write("\r  " + this.color(statusHex, "•") + "  " + message + "\n");
 	}
 
 	/**
@@ -144,6 +165,6 @@ export default class PlexiCoreTerminal {
 		columns -= tail.length;
 
 		let full = this.color(conf.barHex, trail) + padding + this.color(conf.titleHex, title) + padding + this.color(conf.barHex, tail);
-		console.log(full);
+		process.stdout.write(full);
 	}
 }

@@ -6,11 +6,16 @@ new class Test {
      */
     public constructor() {
         const plexiCoreTerminal = new PlexiCoreTerminal();
-        plexiCoreTerminal.section("PlexiCoreTerminal");
-        plexiCoreTerminal.animate("Hello, PlexiCoreTerminal!");
 
-        setTimeout(() => {
-            plexiCoreTerminal.end("success", "Done");
-        }, 2000);
+        plexiCoreTerminal.commandHelper.run([
+            "test_command"
+        ]);
+
+        // plexiCoreTerminal.section("PlexiCoreTerminal");
+        // plexiCoreTerminal.animate("Hello, PlexiCoreTerminal!");
+        //
+        // setTimeout(() => {
+        //     plexiCoreTerminal.end("success", "Done");
+        // }, 2000);
     }
 }

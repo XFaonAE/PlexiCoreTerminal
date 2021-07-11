@@ -15,11 +15,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var chalk_1 = __importDefault(require("chalk"));
+var CommandHelper_1 = __importDefault(require("./CommandHelper"));
 var PlexiCoreTerminal = /** @class */ (function () {
     /**
      * PlexiCoreTerminal entry class
      */
     function PlexiCoreTerminal() {
+        this.commandHelper = new CommandHelper_1.default();
         this.frameInterval = 100;
         this.animationLoop = null;
         this.lastMessage = "";
@@ -71,7 +73,7 @@ var PlexiCoreTerminal = /** @class */ (function () {
         if (this.animationLoop) {
             clearInterval(this.animationLoop);
         }
-        process.stdout.write("\r  " + this.color(statusHex, "•") + "  " + message);
+        process.stdout.write("\r  " + this.color(statusHex, "•") + "  " + message + "\n");
     };
     /**
      * Get text colored in hex format for the terminal
@@ -105,7 +107,7 @@ var PlexiCoreTerminal = /** @class */ (function () {
         var tail = conf.barChar.repeat(columns);
         columns -= tail.length;
         var full = this.color(conf.barHex, trail) + padding + this.color(conf.titleHex, title) + padding + this.color(conf.barHex, tail);
-        console.log(full);
+        process.stdout.write(full);
     };
     return PlexiCoreTerminal;
 }());
