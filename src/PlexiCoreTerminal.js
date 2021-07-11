@@ -21,8 +21,8 @@ var PlexiCoreTerminal = /** @class */ (function () {
         * PlexiCoreTerminal entry class
         */
     function PlexiCoreTerminal() {
-        this.commandHelper = new CommandHelper_1.default();
-        this.frameInterval = 100;
+        this.commandHelper = new CommandHelper_1.default(this);
+        this.frameInterval = 70;
         this.animationLoop = null;
         this.lastMessage = "";
         this.frames = [
@@ -95,7 +95,12 @@ var PlexiCoreTerminal = /** @class */ (function () {
      * @param { string } newMessage New message to use as an overwrite
      */
     PlexiCoreTerminal.prototype.edit = function (newMessage) {
-        this.lastMessage = newMessage + " ".repeat(newMessage.length - this.lastMessage.length);
+        let repaceChars = newMessage.length - this.lastMessage.length;
+        if (repaceChars < 0) {
+            repaceChars = 0;
+        }
+
+        this.lastMessage = newMessage + " ".repeat(repaceChars);
     };
     /**
      * Create section
@@ -118,7 +123,6 @@ var PlexiCoreTerminal = /** @class */ (function () {
         var padding = " ".repeat(conf.titlePadding);
         columns -= padding.length * 2;
         var tail = conf.barChar.repeat(columns);
-        columns -= tail.length;
         var full = this.color(conf.barHex, trail) + padding + this.color(conf.titleHex, title) + padding + this.color(conf.barHex, tail);
         process.stdout.write(full);
     };

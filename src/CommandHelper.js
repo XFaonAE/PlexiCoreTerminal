@@ -9,12 +9,19 @@ var CommandHelper = /** @class */ (function () {
     /**
      * Easily register commands and more
      */
-    function CommandHelper() {
+    function CommandHelper(plexiCoreTerminal) {
+        this.plexiCoreTerminal = plexiCoreTerminal;
         this.ready = false;
         this.commandRegistry = [];
     }
+    /**
+     * Add a command to the registry
+     * @param { Command } command Command object
+     * @return { CommandHelper } CommandHelper class object
+     */
     CommandHelper.prototype.addCommand = function (command) {
         this.commandRegistry.push(command);
+        return this;
     };
     /**
      * Run listener
@@ -27,9 +34,10 @@ var CommandHelper = /** @class */ (function () {
             prefixCommand: []
         };
         var startCommand = function (commandUse) {
-            commands.forEach(function (value, index) {
+            commands.forEach(function (value) {
                 if (value.trigger == commandUse[0]) {
-                    console.log("match");
+                    commandUse.shift();
+                    value.onTrigger(commandUse);
                 }
             });
         };
@@ -46,9 +54,20 @@ var CommandHelper = /** @class */ (function () {
                     startCommand(newCommand_1);
                 }
             });
-            return;
+            return this;
         }
         startCommand(command);
+        return this;
+    };
+    /**
+     * Generates help list based on current command registry
+     * @return { CommandHelper } CommandHelper class object
+     */
+    CommandHelper.prototype.helpPrint = function () {
+        var _this = this;
+        this.commandRegistry.forEach(function (value) {
+            _this.plexiCoreTerminal.row(value.trigger ? value.trigger : "NULL", value.desc ? value.desc : "NULL");
+        });
     };
     return CommandHelper;
 }());

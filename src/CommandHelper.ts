@@ -1,3 +1,5 @@
+import PlexiCoreTerminal from "./PlexiCoreTerminal";
+
 export interface RunOptions {
 
 }
@@ -15,9 +17,19 @@ export interface Command {
 	 * @prop { CallableFunction } onTrigger On command trigger event
 	 */
 	onTrigger?: CallableFunction;
+
+	/**
+	 * @prop { string } desc Description for the command
+	 */
+	desc?: string;
 }
 
 export default class CommandHelper {
+	/**
+	 * @var { PlexiCoreTerminal } plexiCoreTerminal PlexiCoreTerminal class object
+	 */
+	public plexiCoreTerminal: PlexiCoreTerminal;
+
 	/**
 	 * @var { Array<Command> } commandRegistry Command registry list
 	 */
@@ -31,13 +43,20 @@ export default class CommandHelper {
 	/**
 	 * Easily register commands and more
 	 */
-	public constructor() {
+	public constructor(plexiCoreTerminal: PlexiCoreTerminal) {
+		this.plexiCoreTerminal = plexiCoreTerminal;
 		this.ready = false;
 		this.commandRegistry = [];
 	}
 
+	/**
+	 * Add a command to the registry
+	 * @param { Command } command Command object
+	 * @return { CommandHelper } CommandHelper class object
+	 */
 	public addCommand(command: Command) {
 		this.commandRegistry.push(command);
+		return this;
 	}
 
 	/**
@@ -52,9 +71,10 @@ export default class CommandHelper {
 		};
 
 		const startCommand = (commandUse: Array<string>) => {
-			commands.forEach((value: any, index: number) => {
+			commands.forEach((value: any) => {
 				if (value.trigger == commandUse[0]) {
-					console.log("match");
+					commandUse.shift();
+					value.onTrigger(commandUse);
 				}
 			});
 		}
@@ -75,9 +95,20 @@ export default class CommandHelper {
 				}
 			});
 
-			return;
+			return this;
 		}
 
 		startCommand(command);
+		return this;
+	}
+
+	/**
+	 * Generates help list based on current command registry
+	 * @return { CommandHelper } CommandHelper class object
+	 */
+	public helpPrint() {
+		this.commandRegistry.forEach((value: Command) => {
+			this.plexiCoreTerminal.row(value.trigger ? value.trigger : "NULL", value.desc ? value.desc : "NULL");
+		});
 	}
 }

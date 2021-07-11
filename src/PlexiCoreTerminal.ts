@@ -61,8 +61,8 @@ export default class PlexiCoreTerminal {
      	* PlexiCoreTerminal entry class
      	*/
     	public constructor() {
-    		this.commandHelper = new CommandHelper();
-		this.frameInterval = 100;
+    		this.commandHelper = new CommandHelper(this);
+		this.frameInterval = 70;
 		this.animationLoop = null;
 		this.lastMessage = "";
 		this.frames = [
@@ -176,7 +176,6 @@ export default class PlexiCoreTerminal {
 		columns -= padding.length * 2;
 
 		let tail = conf.barChar.repeat(columns);
-		columns -= tail.length;
 
 		let full = this.color(conf.barHex, trail) + padding + this.color(conf.titleHex, title) + padding + this.color(conf.barHex, tail);
 		process.stdout.write(full);

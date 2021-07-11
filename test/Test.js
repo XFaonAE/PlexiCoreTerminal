@@ -4,32 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var PlexiCoreTerminal_1 = __importDefault(require("../src/PlexiCoreTerminal"));
-new /** @class */ (function () {
-    /**
-     * Test class entry
-     */
-    function Test() {
-        var pcTerminal = new PlexiCoreTerminal_1.default();
-        pcTerminal.row("Help", "Shows a list of all commands");
-        pcTerminal.row("Install", "Install the full PlexiCore framework into the current project");
-        pcTerminal.section("PlexiCore | " + "Terminal");
-        console.log(pcTerminal.color("#50ffff", "  Note:"), "This is a testing case");
-        pcTerminal.animate("Hello Progress Bar");
-        pcTerminal
-            .commandHelper
-            .addCommand({
-            trigger: "hello-world",
-            onTrigger: function () {
-                pcTerminal.edit("The terminal message has been modified!");
-            }
-        });
-        pcTerminal
-            .commandHelper
-            .run([
-            "axeri",
-            "plexiCoreTerminal",
-            "test_command"
-        ]);
+var plexiCoreTerminal = new PlexiCoreTerminal_1.default();
+plexiCoreTerminal.section("PlexiCoreTerminal | Test", {
+    titleHex: "#50ffff"
+});
+plexiCoreTerminal.animate("PlexiCoreTerminal can do many things");
+var timeLeft = 5;
+var nextTick = function () {
+    if (timeLeft == 0) {
+        plexiCoreTerminal.end("success", "PlexiCoreTerminal is done!");
+        return;
     }
-    return Test;
-}());
+    plexiCoreTerminal.edit("PlexiCoreTerminal can do many things | Stopping in " + timeLeft + "s");
+    timeLeft -= 1;
+    setTimeout(function () {
+        nextTick();
+    }, 1000);
+};
+nextTick();

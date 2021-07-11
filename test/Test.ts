@@ -1,33 +1,24 @@
 import PlexiCoreTerminal from "../src/PlexiCoreTerminal";
 
-new class Test {
-	/**
-	 * Test class entry
-	 */
-	public constructor() {
-		const pcTerminal = new PlexiCoreTerminal();
-		pcTerminal.row("Help", "Shows a list of all commands");
-		pcTerminal.row("Install", "Install the full PlexiCore framework into the current project");
+const plexiCoreTerminal = new PlexiCoreTerminal();
+plexiCoreTerminal.section("PlexiCoreTerminal | Test", {
+	titleHex: "#50ffff"
+});
 
-		pcTerminal.section("PlexiCore | " + "Terminal");
-		console.log(pcTerminal.color("#50ffff", "  Note:"), "This is a testing case");
+plexiCoreTerminal.animate("PlexiCoreTerminal can do many things");
+let timeLeft = 5;
 
-		pcTerminal.animate("Hello Progress Bar");
-
-		pcTerminal
-			.commandHelper
-			.addCommand({
-				trigger: "hello-world",
-				onTrigger: () => {
-					pcTerminal.edit("The terminal message has been modified!");
-				}
-			});
-		pcTerminal
-			.commandHelper
-			.run([
-				"axeri",
-				"plexiCoreTerminal",
-				"test_command"
-			]);
+const nextTick = () => {
+	if (timeLeft == 0) {
+		plexiCoreTerminal.end("success", "PlexiCoreTerminal is done!");
+		return;
 	}
+
+	plexiCoreTerminal.edit("PlexiCoreTerminal can do many things | Stopping in " + timeLeft + "s");
+	timeLeft -= 1;
+	setTimeout(() => {
+		nextTick();
+	}, 1000);
 }
+
+nextTick();
