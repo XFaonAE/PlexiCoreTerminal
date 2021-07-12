@@ -35,7 +35,8 @@ var CommandHelper = /** @class */ (function () {
         };
         var startCommand = function (commandUse) {
             commands.forEach(function (value) {
-                if (value.trigger == commandUse[0]) {
+                var _a, _b;
+                if (((_a = value.trigger) === null || _a === void 0 ? void 0 : _a.toLowerCase()) == ((_b = commandUse[0]) === null || _b === void 0 ? void 0 : _b.toLowerCase())) {
                     commandUse.shift();
                     value.onTrigger(commandUse);
                 }
