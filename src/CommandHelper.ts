@@ -72,7 +72,7 @@ export default class CommandHelper {
 
 		const startCommand = (commandUse: Array<string>) => {
 			commands.forEach((value: any) => {
-				if (value.trigger == commandUse[0]) {
+				if (value.trigger?.toLowerCase() == commandUse[0]?.toLowerCase()) {
 					commandUse.shift();
 					value.onTrigger(commandUse);
 				}
