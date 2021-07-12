@@ -34,5 +34,5 @@ First, we are importing and constructing `PlexiCoreTerminal`.
 
 Next we are creating a section divider, and then we make a simple count down and finally stop the animation.
 
- - Next [Output](/docs/Output/Output.md)
+ - Next [Output](/docs/Output.md)
  - Prev [Installation](Installation.md)
