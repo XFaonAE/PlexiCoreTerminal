@@ -1,6 +1,6 @@
 {
   "name": "@axeridev/plexi-core-terminal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PlexiCore Framework Component | Terminal helper",
   "main": "./src/PlexiCoreTerminal.js",
   "dependencies": {
