@@ -95,12 +95,7 @@ var PlexiCoreTerminal = /** @class */ (function () {
      * @param { string } newMessage New message to use as an overwrite
      */
     PlexiCoreTerminal.prototype.edit = function (newMessage) {
-        let repaceChars = newMessage.length - this.lastMessage.length;
-        if (repaceChars < 0) {
-            repaceChars = 0;
-        }
-
-        this.lastMessage = newMessage + " ".repeat(repaceChars);
+        this.lastMessage = newMessage + " ".repeat(newMessage.length - this.lastMessage.length);
     };
     /**
      * Create section
