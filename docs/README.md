@@ -1,10 +1,8 @@
 # Documentation
- - [Getting Started](./GettingStarted/README.md)
-    - [Installation](./GettingStarted/Installation.md)
-    - [Basic App](./GettingStarted/BasicApp.md)
- - [Terminal](./Terminal/README.md)
-    - [Sections](./Terminal/Sections.md)
-    - [Animations](./Terminal/Animations.md)
+ - [Getting Started](GettingStarted/GettingStarted.md)
+    - [Installation](GettingStarted/Installation.md)
+    - [Basic App](GettingStarted/BasicApp.md)
+ - [Output](Output/Output.md)
    
 ### Let's get started
- - [Start](./GettingStarted/README.md)
+ - [Start](GettingStarted/GettingStarted.md)
