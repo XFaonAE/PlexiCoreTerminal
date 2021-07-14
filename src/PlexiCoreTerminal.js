@@ -10,6 +10,25 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var chalk_1 = __importDefault(require("chalk"));
 var CommandHelper_1 = __importDefault(require("./CommandHelper"));
 var Animation_1 = __importDefault(require("./Animation"));
+var readline = __importStar(require("readline"));
 var PlexiCoreTerminal = /** @class */ (function () {
     /**
         * PlexiCoreTerminal entry class
@@ -24,6 +44,10 @@ var PlexiCoreTerminal = /** @class */ (function () {
     function PlexiCoreTerminal() {
         this.commandHelper = new CommandHelper_1.default(this);
         this.animation = new Animation_1.default(this);
+        this.rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
     }
     /**
      * Get text colored in hex format for the terminal
@@ -56,7 +80,7 @@ var PlexiCoreTerminal = /** @class */ (function () {
         columns -= padding.length * 2;
         var tail = conf.barChar.repeat(columns);
         var full = this.color(conf.barHex, trail) + padding + this.color(conf.titleHex, title) + padding + this.color(conf.barHex, tail);
-        process.stdout.write(full);
+        process.stdout.write(full + " ");
     };
     /**
      * Create a row with a key and description
@@ -64,7 +88,26 @@ var PlexiCoreTerminal = /** @class */ (function () {
      * @param { string } desc Description label
      */
     PlexiCoreTerminal.prototype.row = function (key, desc) {
-        console.log("  " + this.color("#50ffff", key) + "  -  " + desc);
+        console.log("  " + this.color("#50ffab", key) + "  -  " + desc);
+    };
+    /**
+     * Print a message to the console
+     * @param { string } message Message to print to the console
+     */
+    PlexiCoreTerminal.prototype.write = function (message) {
+        process.stdout.write(this.color("#50ffab", "  i  ") + message + "\n");
+    };
+    /**
+     * Ask for user input form the console
+     * @param { string } question Question of ask from the user
+     * @param { CallableFunction } answerCallback Answer callback
+     */
+    PlexiCoreTerminal.prototype.ask = function (question, answerCallback) {
+        var _this = this;
+        this.rl.question(this.color("#50ffab", "  >  ") + question + ":  ", function (data) {
+            answerCallback(data);
+            _this.rl.close();
+        });
     };
     return PlexiCoreTerminal;
 }());

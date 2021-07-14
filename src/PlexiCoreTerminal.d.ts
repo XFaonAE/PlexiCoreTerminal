@@ -35,6 +35,10 @@ export default class PlexiCoreTerminal {
      */
     animation: Animation;
     /**
+     * @var rl Read line object
+     */
+    rl: any;
+    /**
         * PlexiCoreTerminal entry class
         */
     constructor();
@@ -57,4 +61,15 @@ export default class PlexiCoreTerminal {
      * @param { string } desc Description label
      */
     row(key: string, desc: string): void;
+    /**
+     * Print a message to the console
+     * @param { string } message Message to print to the console
+     */
+    write(message: string): void;
+    /**
+     * Ask for user input form the console
+     * @param { string } question Question of ask from the user
+     * @param { CallableFunction } answerCallback Answer callback
+     */
+    ask(question: string, answerCallback: CallableFunction): void;
 }

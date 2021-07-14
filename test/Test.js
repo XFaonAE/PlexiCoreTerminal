@@ -5,10 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var PlexiCoreTerminal_1 = __importDefault(require("../src/PlexiCoreTerminal"));
 var plexiCoreTerminal = new PlexiCoreTerminal_1.default();
-plexiCoreTerminal.section("PlexiCoreTerminal | Test", {
-    titleHex: "#50ffff"
-});
-plexiCoreTerminal.animation.animate("PlexiCoreTerminal can do many things");
+plexiCoreTerminal.section("PlexiCoreTerminal | Test");
 var timeLeft = 5;
 var nextTick = function () {
     if (timeLeft == 0) {
@@ -21,4 +18,8 @@ var nextTick = function () {
         nextTick();
     }, 1000);
 };
-nextTick();
+plexiCoreTerminal.ask("What's your name?", function (data) {
+    plexiCoreTerminal.write("Hello, " + data + "!");
+    plexiCoreTerminal.animation.animate("PlexiCoreTerminal can do many things");
+    nextTick();
+});

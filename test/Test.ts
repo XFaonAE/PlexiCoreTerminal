@@ -1,11 +1,8 @@
 import PlexiCoreTerminal from "../src/PlexiCoreTerminal";
 
 const plexiCoreTerminal = new PlexiCoreTerminal();
-plexiCoreTerminal.section("PlexiCoreTerminal | Test", {
-	titleHex: "#50ffff"
-});
+plexiCoreTerminal.section("PlexiCoreTerminal | Test");
 
-plexiCoreTerminal.animation.animate("PlexiCoreTerminal can do many things");
 let timeLeft = 5;
 
 const nextTick = () => {
@@ -21,4 +18,8 @@ const nextTick = () => {
 	}, 1000);
 }
 
-nextTick();
+plexiCoreTerminal.ask("What's your name?", (data: string) => {
+	plexiCoreTerminal.write("Hello, " + data + "!");
+	plexiCoreTerminal.animation.animate("PlexiCoreTerminal can do many things");
+	nextTick();
+});

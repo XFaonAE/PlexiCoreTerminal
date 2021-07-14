@@ -11,15 +11,15 @@ var Animation = /** @class */ (function () {
         this.lastMessage = "";
         this.frames = [
             plexiCoreTerminal.color("#50ffff", "⠋"),
-            plexiCoreTerminal.color("#50ffff", "⠙"),
-            plexiCoreTerminal.color("#50ffff", "⠹"),
-            plexiCoreTerminal.color("#50ffff", "⠸"),
-            plexiCoreTerminal.color("#50ffff", "⠼"),
-            plexiCoreTerminal.color("#50ffff", "⠴"),
-            plexiCoreTerminal.color("#50ffff", "⠦"),
-            plexiCoreTerminal.color("#50ffff", "⠧"),
-            plexiCoreTerminal.color("#50ffff", "⠇"),
-            plexiCoreTerminal.color("#50ffff", "⠏")
+            plexiCoreTerminal.color("#50ffab", "⠙"),
+            plexiCoreTerminal.color("#50ffab", "⠹"),
+            plexiCoreTerminal.color("#50ffab", "⠸"),
+            plexiCoreTerminal.color("#50ffab", "⠼"),
+            plexiCoreTerminal.color("#50ffab", "⠴"),
+            plexiCoreTerminal.color("#50ffab", "⠦"),
+            plexiCoreTerminal.color("#50ffab", "⠧"),
+            plexiCoreTerminal.color("#50ffab", "⠇"),
+            plexiCoreTerminal.color("#50ffab", "⠏")
         ];
     }
     /**
@@ -51,7 +51,7 @@ var Animation = /** @class */ (function () {
         var statusHex = null;
         switch (status) {
             case "success":
-                statusHex = "#50ffff";
+                statusHex = "#50ffab";
                 break;
             case "warning":
                 statusHex = "#ffff55";

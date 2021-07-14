@@ -1,6 +1,7 @@
 import chalk from "chalk";
 import CommandHelper from "./CommandHelper";
 import Animation from "./Animation";
+import * as readline from "readline";
 
 /**
  * Options for creating a section
@@ -44,11 +45,20 @@ export default class PlexiCoreTerminal {
 	public animation: Animation;
 
 	/**
+	 * @var rl Read line object
+	 */
+	public rl: any;
+
+	/**
      	* PlexiCoreTerminal entry class
      	*/
     	public constructor() {
     		this.commandHelper = new CommandHelper(this);
     		this.animation = new Animation(this);
+    		this.rl = readline.createInterface({
+			input: process.stdin,
+			output: process.stdout
+		});
 	}
 
 	/**
@@ -91,7 +101,7 @@ export default class PlexiCoreTerminal {
 		let tail = conf.barChar.repeat(columns);
 
 		let full = this.color(conf.barHex, trail) + padding + this.color(conf.titleHex, title) + padding + this.color(conf.barHex, tail);
-		process.stdout.write(full);
+		process.stdout.write(full + " ");
 	}
 
 	/**
@@ -100,6 +110,26 @@ export default class PlexiCoreTerminal {
 	 * @param { string } desc Description label
 	 */
 	public row(key: string, desc: string) {
-		console.log("  " + this.color("#50ffff", key) + "  -  " + desc);
+		console.log("  " + this.color("#50ffab", key) + "  -  " + desc);
+	}
+
+	/**
+	 * Print a message to the console
+	 * @param { string } message Message to print to the console
+	 */
+	public write(message: string) {
+		process.stdout.write(this.color("#50ffab", "  i  ") + message + "\n");
+	}
+
+	/**
+	 * Ask for user input form the console
+	 * @param { string } question Question of ask from the user
+	 * @param { CallableFunction } answerCallback Answer callback
+	 */
+	public ask(question: string, answerCallback: CallableFunction) {
+		this.rl.question(this.color("#50ffab", "  >  ") + question + ":  ", (data: string) => {
+			answerCallback(data);
+			this.rl.close();
+		});
 	}
 }

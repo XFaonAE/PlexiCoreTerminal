@@ -36,15 +36,15 @@ export default class Animation {
 		this.lastMessage = "";
 		this.frames = [
 			plexiCoreTerminal.color("#50ffff", "⠋"),
-			plexiCoreTerminal.color("#50ffff", "⠙"),
-			plexiCoreTerminal.color("#50ffff", "⠹"),
-			plexiCoreTerminal.color("#50ffff", "⠸"),
-			plexiCoreTerminal.color("#50ffff", "⠼"),
-			plexiCoreTerminal.color("#50ffff", "⠴"),
-			plexiCoreTerminal.color("#50ffff", "⠦"),
-			plexiCoreTerminal.color("#50ffff", "⠧"),
-			plexiCoreTerminal.color("#50ffff", "⠇"),
-			plexiCoreTerminal.color("#50ffff", "⠏")
+			plexiCoreTerminal.color("#50ffab", "⠙"),
+			plexiCoreTerminal.color("#50ffab", "⠹"),
+			plexiCoreTerminal.color("#50ffab", "⠸"),
+			plexiCoreTerminal.color("#50ffab", "⠼"),
+			plexiCoreTerminal.color("#50ffab", "⠴"),
+			plexiCoreTerminal.color("#50ffab", "⠦"),
+			plexiCoreTerminal.color("#50ffab", "⠧"),
+			plexiCoreTerminal.color("#50ffab", "⠇"),
+			plexiCoreTerminal.color("#50ffab", "⠏")
 		];
 	}
 
@@ -80,7 +80,7 @@ export default class Animation {
 		let statusHex = null;
 		switch (status) {
 			case "success":
-				statusHex = "#50ffff";
+				statusHex = "#50ffab";
 				break;
 
 			case "warning":
