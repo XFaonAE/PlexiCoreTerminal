@@ -37,7 +37,8 @@ Message | `string` | A message to display along side with the spinner animation
 ### Example
 ```js
 plexiCoreTerminal
-	.animate("Hello, PlexiCoreTerminal!");
+	.animation
+    	.animate("Hello, PlexiCoreTerminal!");
 ```
 
 ## `edit`
@@ -52,6 +53,7 @@ New Message | `string` | Message to use for updating the spinner
 ### Example
 ```js
 plexiCoreTerminal
+    	.animation
 	.animate("This is a message")
 	.edit("The message has been changed");
 ```
@@ -68,6 +70,7 @@ Options | `?SectionOptions` | Options for the divider
 ### Example
 ```js
 plexiCoreTerminal
+    	.animation
 	.section("PlexiCoreTerminal");
 ```
 
@@ -83,6 +86,7 @@ Message | `string` | Message to re-color
 ### Example
 ```js
 console.log(plexiCoreTerminal
+    	.animation
 	.color("This text is Cyan")
 );
 ```
@@ -94,12 +98,13 @@ This method allows you to indicate the spinner's success, warning or error statu
 ### Usage
 Param | Type | Desc
 ----- | ---- | ----
-Status | `"success" | "warning" | "error"` | Status of the spinner
+Status | `"success"` `"warning"` `"error"` | Status of the spinner
 New Message | `?string` | Update to a new message
 
 ### Example
 ```js
 plexiCoreTerminal
+    	.animation
 	.animate("This is a spinner")
 	.end("success", "The spinner is done and successful");
 ```

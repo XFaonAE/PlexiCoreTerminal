@@ -9,16 +9,16 @@ plexiCoreTerminal.section("PlexiCoreTerminal | Test", {
     	titleHex: "#50ffff"
 });
 
-plexiCoreTerminal.animate("PlexiCoreTerminal can do many things");
+plexiCoreTerminal.animation.animate("PlexiCoreTerminal can do many things");
 let timeLeft = 5;
 
 const nextTick = () => {
-		    if (timeLeft == 0) {
-			plexiCoreTerminal.end("success", "PlexiCoreTerminal is done!");
-			return;
+	    if (timeLeft == 0) {
+		plexiCoreTerminal.animation.end("success", "PlexiCoreTerminal is done!");
+		return;
 	    }
     
-	    plexiCoreTerminal.edit("PlexiCoreTerminal can do many things | Stopping in " + timeLeft + "s");
+	    plexiCoreTerminal.animation.edit("PlexiCoreTerminal can do many things | Stopping in " + timeLeft + "s");
 	    timeLeft -= 1;
     
 	    setTimeout(() => {
