@@ -1,5 +1,5 @@
-/// <reference types="node" />
 import CommandHelper from "./CommandHelper";
+import Animation from "./Animation";
 /**
  * Options for creating a section
  */
@@ -27,40 +27,17 @@ export interface SectionOptions {
 }
 export default class PlexiCoreTerminal {
     /**
- * @var { NdeJS.Timer | null } animationLoop Animation loop object
- */
-    animationLoop: NodeJS.Timer | null;
-    /**
      * @var { CommandHelper } commandHelper CommandHelper class object
      */
     commandHelper: CommandHelper;
     /**
-     * @var { number } frameInterval Delay between animation frames
+     * @var { Animation } animation Animation class object
      */
-    frameInterval: number;
-    /**
-     * @var { string } lastMessage Last printed message
-     */
-    lastMessage: string;
-    /**
-     * @var { Array<string> } frames List of all the frames for the spinner animation
-     */
-    frames: Array<string>;
+    animation: Animation;
     /**
         * PlexiCoreTerminal entry class
         */
     constructor();
-    /**
-     * Display an animation
-     * @param { string } message Message to display with the animation
-     */
-    animate(message: string): void;
-    /**
-     * End the current running animation
-     * @param { "success" | "warning" | "error" } status Status mode
-     * @param { string } newMessage New message to write
-     */
-    end(status: "success" | "warning" | "error", newMessage?: string): void;
     /**
      * Get text colored in hex format for the terminal
      * @param { string } hex Hex code
@@ -68,11 +45,6 @@ export default class PlexiCoreTerminal {
      * @return { string } Colored text ready for use in the terminal
      */
     color(hex: string, text: string): string;
-    /**
-     * Edit an animations message if it's running
-     * @param { string } newMessage New message to use as an overwrite
-     */
-    edit(newMessage: string): void;
     /**
      * Create section
      * @param { string } title Title of the section

@@ -16,71 +16,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var chalk_1 = __importDefault(require("chalk"));
 var CommandHelper_1 = __importDefault(require("./CommandHelper"));
+var Animation_1 = __importDefault(require("./Animation"));
 var PlexiCoreTerminal = /** @class */ (function () {
     /**
         * PlexiCoreTerminal entry class
         */
     function PlexiCoreTerminal() {
         this.commandHelper = new CommandHelper_1.default(this);
-        this.frameInterval = 70;
-        this.animationLoop = null;
-        this.lastMessage = "";
-        this.frames = [
-            this.color("#50ffff", "⠋"),
-            this.color("#50ffff", "⠙"),
-            this.color("#50ffff", "⠹"),
-            this.color("#50ffff", "⠸"),
-            this.color("#50ffff", "⠼"),
-            this.color("#50ffff", "⠴"),
-            this.color("#50ffff", "⠦"),
-            this.color("#50ffff", "⠧"),
-            this.color("#50ffff", "⠇"),
-            this.color("#50ffff", "⠏")
-        ];
+        this.animation = new Animation_1.default(this);
     }
-    /**
-     * Display an animation
-     * @param { string } message Message to display with the animation
-     */
-    PlexiCoreTerminal.prototype.animate = function (message) {
-        var _this = this;
-        this.lastMessage = message;
-        var currentFrame = 0;
-        this.animationLoop = setInterval(function () {
-            if (currentFrame > _this.frames.length - 1) {
-                currentFrame = 0;
-            }
-            process.stdout.write("  " + _this.frames[currentFrame] + "  " + _this.lastMessage + "\r");
-            currentFrame++;
-        }, this.frameInterval);
-    };
-    /**
-     * End the current running animation
-     * @param { "success" | "warning" | "error" } status Status mode
-     * @param { string } newMessage New message to write
-     */
-    PlexiCoreTerminal.prototype.end = function (status, newMessage) {
-        var message = this.lastMessage;
-        if (newMessage) {
-            message = newMessage + " ".repeat(this.lastMessage.length - newMessage.length);
-        }
-        var statusHex = null;
-        switch (status) {
-            case "success":
-                statusHex = "#50ffff";
-                break;
-            case "warning":
-                statusHex = "#ffff55";
-                break;
-            case "error":
-                statusHex = "#ffff55";
-                break;
-        }
-        if (this.animationLoop) {
-            clearInterval(this.animationLoop);
-        }
-        process.stdout.write("\r  " + this.color(statusHex, "•") + "  " + message + "\n");
-    };
     /**
      * Get text colored in hex format for the terminal
      * @param { string } hex Hex code
@@ -89,13 +33,6 @@ var PlexiCoreTerminal = /** @class */ (function () {
      */
     PlexiCoreTerminal.prototype.color = function (hex, text) {
         return chalk_1.default.hex(hex)(text);
-    };
-    /**
-     * Edit an animations message if it's running
-     * @param { string } newMessage New message to use as an overwrite
-     */
-    PlexiCoreTerminal.prototype.edit = function (newMessage) {
-        this.lastMessage = newMessage + " ".repeat(newMessage.length - this.lastMessage.length);
     };
     /**
      * Create section
