@@ -46,7 +46,8 @@ var PlexiCoreTerminal = /** @class */ (function () {
         this.animation = new Animation_1.default(this);
         this.rl = readline.createInterface({
             input: process.stdin,
-            output: process.stdout
+            output: process.stdout,
+            terminal: false
         });
     }
     /**
@@ -80,7 +81,7 @@ var PlexiCoreTerminal = /** @class */ (function () {
         columns -= padding.length * 2;
         var tail = conf.barChar.repeat(columns);
         var full = this.color(conf.barHex, trail) + padding + this.color(conf.titleHex, title) + padding + this.color(conf.barHex, tail);
-        process.stdout.write(full + " ");
+        process.stdout.write(full);
     };
     /**
      * Create a row with a key and description
