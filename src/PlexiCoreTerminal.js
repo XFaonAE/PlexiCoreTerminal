@@ -107,7 +107,6 @@ var PlexiCoreTerminal = /** @class */ (function () {
         var _this = this;
         this.rl.question(this.color("#50ffab", "  >  ") + question + ":  ", function (data) {
             answerCallback(data);
-            _this.rl.close();
         });
     };
     return PlexiCoreTerminal;
