@@ -130,7 +130,6 @@ export default class PlexiCoreTerminal {
 	public ask(question: string, answerCallback: CallableFunction) {
 		this.rl.question(this.color("#50ffab", "  >  ") + question + ":  ", (data: string) => {
 			answerCallback(data);
-			this.rl.close();
 		});
 	}
 }
